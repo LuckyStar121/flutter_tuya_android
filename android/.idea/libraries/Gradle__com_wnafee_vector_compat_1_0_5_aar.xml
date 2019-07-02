@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.wnafee:vector-compat:1.0.5@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/vector-compat-1.0.5.aar/1ea73949aff414f9580d916eb125293c/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/vector-compat-1.0.5.aar/1ea73949aff414f9580d916eb125293c/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.wnafee/vector-compat/1.0.5/8156352881f6fce50902896fa322d90945930f10/vector-compat-1.0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
