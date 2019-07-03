@@ -10,7 +10,6 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
-            <option value="D:/DevTools/Flutter_SDK/flutter/.pub-cache/hosted/pub.dartlang.org/wifi-0.1.5/android" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
           </set>

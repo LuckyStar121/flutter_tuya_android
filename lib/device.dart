@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+class DeviceItem{
+  String strName;
+  String strID;
+  DeviceItem();
+}
+
 class DeviceApp extends StatelessWidget {
+
+  DeviceApp ({Key key, this.roomname}) : super (key: key);
+  final String roomname;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,16 +27,17 @@ class DeviceApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: DevicePage(title: 'Device Test Page'),
+      home: DevicePage(title: 'Device Test Page', FamilyName: roomname,),
     );
   }
 }
 
 class DevicePage extends StatefulWidget {
 
-  DevicePage({Key key, this.title}) : super (key : key);
+  DevicePage({Key key, this.title, this.FamilyName}) : super (key : key);
 
   final String title;
+  final String FamilyName;
 
   @override
   _DevicePageState createState() => _DevicePageState();
@@ -36,12 +46,14 @@ class DevicePage extends StatefulWidget {
 class _DevicePageState extends State<DevicePage> {
 
   static const platform = const MethodChannel('flutter.wifi/getssid');
+  static const searchDevice = const MethodChannel('flutter.wifi/searchdevice');
 
   final myWifiPassController = TextEditingController();
 
-  final String strRoomName = "TestRoom";
   String _strSSID = "Please confirm wifi Setting";
-  String _stateWithWifi = "";
+
+  String _strDeviceName = "";
+  String _strDeviceID = "";
   Future<void> _getSSIDFromPlatform() async {
     String strResult;
     try{
@@ -55,6 +67,7 @@ class _DevicePageState extends State<DevicePage> {
   }
 
   Future<void> _searchDevice() async {
+    String strResult;
     if (myWifiPassController.text.isEmpty){
       return showDialog(
         context: context,
@@ -67,8 +80,20 @@ class _DevicePageState extends State<DevicePage> {
         },
       );
     }
-
-
+    try {
+      strResult = await searchDevice.invokeMethod('getDevice', {'wifipass': myWifiPassController.text});
+      List<String> device = strResult.split(",");
+      setState(() {
+        _strDeviceName = device[0];
+        _strDeviceID = device[1];
+      });
+    } on PlatformException catch (e) {
+      strResult = e.message;
+      setState(() {
+        _strDeviceName = "";
+        _strDeviceID = "";
+      });
+    }
   }
 
   void main() async {
@@ -80,6 +105,42 @@ class _DevicePageState extends State<DevicePage> {
 
     main();
 
+    Widget DeviceList = Container (
+      padding: EdgeInsets.only(left: 10),
+      color: Colors.red.shade100,
+      child: Row(
+        children: <Widget>[
+          Expanded (
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+
+                Container(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Text(
+                    _strDeviceName,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  child: Text(
+                    _strDeviceID,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
     Widget WifiSection = Container(
       padding: EdgeInsets.only(left: 10),
       color: Colors.green.shade100,
@@ -89,6 +150,17 @@ class _DevicePageState extends State<DevicePage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.only(bottom: 6),
+                  color: Colors.red.shade100,
+                  child: Text(
+                    "FamilyName:  " + widget.FamilyName,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
                 Container(
                   padding: const EdgeInsets.only(bottom: 6),
                   color: Colors.blue.shade100,
@@ -114,7 +186,7 @@ class _DevicePageState extends State<DevicePage> {
                   padding: const EdgeInsets.only(bottom: 6),
                   color: Colors.red.shade100,
                   child: Text(
-                    "Success",
+                    "",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
@@ -146,6 +218,7 @@ class _DevicePageState extends State<DevicePage> {
                     onPressed: _searchDevice,
                   ),
                 ),
+                DeviceList,
               ],
             ),
           ),

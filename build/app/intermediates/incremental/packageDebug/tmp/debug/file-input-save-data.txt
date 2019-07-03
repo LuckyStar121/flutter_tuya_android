@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Jul 01 04:35:36 CST 2019
+#Thu Jul 04 05:51:37 CST 2019
 17.baseType=DIRECTORY
 4.path=jsr47android.properties
 8.set=ASSET

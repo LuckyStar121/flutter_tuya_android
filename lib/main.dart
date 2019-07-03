@@ -78,19 +78,21 @@ class _MainPageState extends State<MainPage> {
           );
         },
       );
+    List<String> result;
     try{
       testString = await platform.invokeMethod('getTestString', {'name': myNameController.text, 'pass': myPassController.text, 'phonecode': myPhoneCodeController.text});
+      result = testString.split(",");
       Navigator.push(
           context,
           new MaterialPageRoute(
-              builder: (context) => DeviceApp(),
+              builder: (context) => DeviceApp(roomname: result[1],),
           ),
       );
     } on PlatformException catch (e) {
       testString = e.message;
     }
     setState(() {
-      _testString = testString;
+      _testString = result[0];
     });
   }
 

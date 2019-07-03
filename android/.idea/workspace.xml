@@ -1,27 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="flutter" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="flutter.native" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8fccd3df-661e-42b6-bc98-4ce2c9e77686" name="Default Changelist" comment="" />
+    <list default="true" id="01e82548-684c-4916-96af-0d8f2e09d2a4" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/panayiotis/flutterdemo/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/panayiotis/flutterdemo/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app.dill" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app.dill" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app.dill.track.dill" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/flutter/debug/flutter_assets/kernel_blob.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/flutter/debug/snapshot_blob.bin.d.fingerprint" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/flutter/debug/snapshot_blob.bin.d.fingerprint" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/incremental/mergeDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/incremental/packageDebug/tmp/debug/dex-renamer-state.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/incremental/packageDebug/tmp/debug/file-input-save-data.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/incremental/packageDebug/tmp/debug/zip-cache/K1WmBql4+3vz47wsbwdTZM1Jnz0=" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/incremental/packageDebug/tmp/debug/zip-cache/K1WmBql4+3vz47wsbwdTZM1Jnz0=" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$2$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$3$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$3$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$3$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity.class" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/com/panayiotis/flutterdemo/MainActivity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/merged_assets/debug/mergeDebugAssets/out/flutter_assets/kernel_blob.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/merged_assets/debug/mergeDebugAssets/out/flutter_assets/kernel_blob.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/3.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/3.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/4.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/4.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/5.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/5.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$1.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$1.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$2$1.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$2.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$2.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$3$1.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$3$1.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$3$2.dex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$3.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$3.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$4.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity$4.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexBuilder/debug/53/com/panayiotis/flutterdemo/MainActivity.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexMerger/debug/0/classes.dex" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexMerger/debug/0/classes.dex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexMerger/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/dexMerger/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/mergeJavaRes/debug/0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/mergeJavaRes/debug/0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/intermediates/transforms/stripDebugSymbol/debug/__content__.json" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/intermediates/transforms/stripDebugSymbol/debug/__content__.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/outputs/apk/app.apk" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/outputs/apk/app.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/outputs/apk/app.apk.sha1" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/outputs/apk/app.apk.sha1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../build/app/outputs/apk/debug/app-debug.apk" beforeDir="false" afterPath="$PROJECT_DIR$/../build/app/outputs/apk/debug/app-debug.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/device.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/device.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/main.dart" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/panayiotis/flutterdemo/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="377">
-              <caret line="201" column="22" selection-start-line="201" selection-start-column="22" selection-end-line="201" selection-end-column="22" />
+            <state relative-caret-position="343">
+              <caret line="380" column="31" selection-start-line="380" selection-start-column="31" selection-end-line="380" selection-end-column="31" />
               <folding>
-                <element signature="class#3299:4861" />
+                <element signature="e#13474#13475#0" expanded="true" />
+                <element signature="e#13518#13519#0" expanded="true" />
+                <element signature="e#13320#13321#0" expanded="true" />
+                <element signature="e#13352#13353#0" expanded="true" />
+                <element signature="e#14004#14005#0" expanded="true" />
+                <element signature="e#14061#14062#0" expanded="true" />
+                <element signature="e#13510#13511#0" expanded="true" />
+                <element signature="e#13550#13551#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -29,8 +93,21 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>currentHomeBean</find>
+      <find>checkFamilyCount</find>
+      <find>Log.e(CHANNEL</find>
+      <find>loginResult</find>
+      <find>success, fa</find>
+      <find>loginResult.succes</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GithubDefaultAccount">
+    <option name="defaultAccountId" value="6498b459-9c74-4bca-9eb8-3c18d96cfe7a" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -51,23 +128,8 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
+      <pane id="AndroidView" />
       <pane id="Scope" />
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="android" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-            </path>
-            <path>
-              <item name="android" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane" />
     </panes>
   </component>
@@ -76,8 +138,7 @@
     <property name="device.picker.selection" value="EMR9K18611901748" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="not.eligible.for.single.variant.sync" value="true" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="show.do.not.ask.upgrade.gradle.plugin" value="3.2.1" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
@@ -160,11 +221,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8fccd3df-661e-42b6-bc98-4ce2c9e77686" name="Default Changelist" comment="" />
-      <created>1561926917441</created>
+      <changelist id="01e82548-684c-4916-96af-0d8f2e09d2a4" name="Default Changelist" comment="" />
+      <created>1562072494014</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1561926917441</updated>
+      <updated>1562072494014</updated>
     </task>
     <servers />
   </component>
@@ -172,7 +233,7 @@
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" visible="true" weight="0.12954795" />
+      <window_info content_ui="combo" id="Project" visible="true" weight="0.16758545" />
       <window_info id="Structure" side_tool="true" />
       <window_info id="Build Variants" side_tool="true" />
       <window_info id="Image Layers" />
@@ -181,16 +242,15 @@
       <window_info id="Capture Tool" />
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Run" />
-      <window_info active="true" anchor="bottom" id="Logcat" visible="true" weight="0.32917964" />
+      <window_info active="true" anchor="bottom" id="Run" visible="true" weight="0.32917964" />
+      <window_info anchor="bottom" id="Logcat" weight="0.32917964" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="TODO" />
-      <window_info anchor="bottom" id="Find" />
-      <window_info anchor="bottom" id="Debug" />
+      <window_info anchor="bottom" id="Debug" weight="0.32917964" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Flutter Performance" side_tool="true" />
-      <window_info anchor="bottom" id="Build" weight="0.32917964" />
+      <window_info anchor="bottom" id="Build" weight="0.19003116" />
       <window_info anchor="bottom" id="Android Profiler" />
       <window_info anchor="right" id="Device File Explorer" side_tool="true" />
       <window_info anchor="right" id="Capture Analysis" />
@@ -202,27 +262,19 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/tuyasmart-3.0.3.aar/6c44137b8ee7d755bf160404e3b43997/jars/classes.jar!/com/tuya/smart/android/device/utils/WiFiUtil.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="75" lean-forward="true" selection-start-line="10" selection-start-column="75" selection-end-line="10" selection-end-column="75" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/panayiotis/flutterdemo/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="201" column="22" selection-start-line="201" selection-start-column="22" selection-end-line="201" selection-end-column="22" />
+        <state relative-caret-position="343">
+          <caret line="380" column="31" selection-start-line="380" selection-start-column="31" selection-end-line="380" selection-end-column="31" />
           <folding>
-            <element signature="class#3299:4861" />
+            <element signature="e#13474#13475#0" expanded="true" />
+            <element signature="e#13518#13519#0" expanded="true" />
+            <element signature="e#13320#13321#0" expanded="true" />
+            <element signature="e#13352#13353#0" expanded="true" />
+            <element signature="e#14004#14005#0" expanded="true" />
+            <element signature="e#14061#14062#0" expanded="true" />
+            <element signature="e#13510#13511#0" expanded="true" />
+            <element signature="e#13550#13551#0" expanded="true" />
           </folding>
         </state>
       </provider>
