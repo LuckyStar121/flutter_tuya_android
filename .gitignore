@@ -31,3 +31,4 @@ tests/_output/*
 tests/_support/_generated
 /node_modules
 /build
+/android/.gradle
