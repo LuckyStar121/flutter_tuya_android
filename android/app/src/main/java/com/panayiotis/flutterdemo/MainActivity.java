@@ -1,7 +1,11 @@
 package com.panayiotis.flutterdemo;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -13,7 +17,9 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.PermissionChecker;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 
 import com.tuya.smart.android.common.utils.L;
 import com.tuya.smart.android.common.utils.SafeHandler;
@@ -24,22 +30,18 @@ import com.tuya.smart.android.user.api.IRegisterCallback;
 import com.tuya.smart.android.user.bean.User;
 import com.tuya.smart.home.sdk.TuyaHomeSdk;
 import com.tuya.smart.home.sdk.bean.HomeBean;
-import com.tuya.smart.home.sdk.builder.ActivatorBuilder;
 import com.tuya.smart.home.sdk.callback.ITuyaGetHomeListCallback;
 import com.tuya.smart.home.sdk.callback.ITuyaHomeResultCallback;
 import com.tuya.smart.interior.device.bean.GwDevResp;
 import com.tuya.smart.sdk.TuyaSdk;
 import com.tuya.smart.sdk.api.INeedLoginListener;
 import com.tuya.smart.sdk.api.IResultCallback;
-import com.tuya.smart.sdk.api.ITuyaActivator;
 import com.tuya.smart.sdk.api.ITuyaActivatorGetToken;
-import com.tuya.smart.sdk.api.ITuyaSmartActivatorListener;
 import com.tuya.smart.sdk.bean.DeviceBean;
-import com.tuya.smart.sdk.enums.ActivatorEZStepCode;
-import com.tuya.smart.sdk.enums.ActivatorModelEnum;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,9 +49,6 @@ import io.flutter.app.FlutterActivity;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugins.GeneratedPluginRegistrant;
-
-import static com.tuya.smart.sdk.enums.ActivatorModelEnum.TY_AP;
-import static com.tuya.smart.sdk.enums.ActivatorModelEnum.TY_EZ;
 
 public class MainActivity extends FlutterActivity{
 
@@ -65,135 +64,68 @@ public class MainActivity extends FlutterActivity{
   private HomeBean currentHomeBean = null;
   MethodChannel.Result wifiResult;
   MethodChannel.Result loginResult;
-  MethodChannel.Result deviceResult;
-
-  private String strWifiID;
-  private String strWifiPass;
 
   private SafeHandler mHandler;
-  private ITuyaActivator mTuyaActivator;
-  private ActivatorModelEnum mModelEnum;
-
-  private boolean mBindDeviceSuccess;
-  private int mTime;
-  private boolean mStop;
-
-  public static final int WHAT_EC_ACTIVE_ERROR = 0x02;
-  public static final int WHAT_EC_ACTIVE_SUCCESS = 0x03;
-  public static final int WHAT_AP_ACTIVE_ERROR = 0x04;
-  public static final int WHAT_AP_ACTIVE_SUCCESS = 0x05;
-  public static final int WHAT_EC_GET_TOKEN_ERROR = 0x06;
-  public static final int WHAT_DEVICE_FIND = 0x07;
-  public static final int WHAT_BIND_DEVICE_SUCCESS = 0x08;
-  private static final int MESSAGE_CONFIG_WIFI_OUT_OF_TIME = 0x16;
-
   private Handler.Callback mCallback = new Handler.Callback() {
     @Override
     public boolean handleMessage(Message msg) {
       switch (msg.what) {
-        case MESSAGE_SHOW_SUCCESS_PAGE:
-          break;
-        case MESSAGE_CONFIG_WIFI_OUT_OF_TIME:
-          checkLoop();
-          break;
-        case WHAT_EC_GET_TOKEN_ERROR:
-          stopSearch();
-          break;
-        //ec
-        case WHAT_EC_ACTIVE_ERROR:
-          L.d("Handler", "ec_active_error");
-          stopSearch();
-          if (mBindDeviceSuccess) {
-            break;
-          }
-          break;
-
-        case WHAT_AP_ACTIVE_ERROR:
-          L.d("Handler", "ap_active_error");
-          stopSearch();
-          if (mBindDeviceSuccess) {
-            break;
-          }
-          //Show Failed View
-          currentSSID = WiFiUtil.getCurrentSSID(mContext);
-
-          break;
-
-        case WHAT_EC_ACTIVE_SUCCESS:  //EC Active Success
-        case WHAT_AP_ACTIVE_SUCCESS:  //AP Active Success
-          L.d("Handler", "active_success");
-          DeviceBean configDev = (DeviceBean) ((Result)msg.obj).getObj();
-          stopSearch();
-          configSuccess(configDev);
-          break;
-
-        case WHAT_DEVICE_FIND:
-          L.d("Handler", "device_find");
-          deviceFind((String) ((Result) (msg.obj)).getObj());
-          break;
-        case WHAT_BIND_DEVICE_SUCCESS:
-          L.d("Handler", "bind_device_success");
-          bindDeviceSuccess(((GwDevResp) ((Result) (msg.obj)).getObj()).getName());
-          break;
+//        case MESSAGE_SHOW_SUCCESS_PAGE:
+//          mView.showSuccessPage();
+//          break;
+//        case MESSAGE_CONFIG_WIFI_OUT_OF_TIME:
+//          checkLoop();
+//          break;
+//        //网络错误异常情况
+//        case DeviceBindModel.WHAT_EC_GET_TOKEN_ERROR:            //获取token失败
+//          stopSearch();
+//          mView.showNetWorkFailurePage();
+//          break;
+//        //ec激活失败
+//        case DeviceBindModel.WHAT_EC_ACTIVE_ERROR:
+//          L.d(TAG, "ec_active_error");
+//          stopSearch();
+//          if (mBindDeviceSuccess) {
+//            mView.showBindDeviceSuccessFinalTip();
+//            break;
+//          }
+//          mView.showFailurePage();
+//          break;
+//
+//        //AP激活失败
+//        case DeviceBindModel.WHAT_AP_ACTIVE_ERROR:
+//          L.d(TAG, "ap_active_error");
+//          stopSearch();
+//          if (mBindDeviceSuccess) {
+//            mView.showBindDeviceSuccessFinalTip();
+//            break;
+//          }
+//          mView.showFailurePage();
+//          String currentSSID = WiFiUtil.getCurrentSSID(mContext);
+//          if (BindDeviceUtils.isAPMode())
+//            WiFiUtil.removeNetwork(mContext, currentSSID);
+//          break;
+//
+//        case DeviceBindModel.WHAT_EC_ACTIVE_SUCCESS:  //EC激活成功
+//        case DeviceBindModel.WHAT_AP_ACTIVE_SUCCESS:  //AP激活成功
+//          L.d(TAG, "active_success");
+//          DeviceBean configDev = (DeviceBean) ((Result)msg.obj).getObj();
+//          stopSearch();
+//          configSuccess(configDev);
+//          break;
+//
+//        case DeviceBindModel.WHAT_DEVICE_FIND:
+//          L.d(TAG, "device_find");
+//          deviceFind((String) ((Result) (msg.obj)).getObj());
+//          break;
+//        case DeviceBindModel.WHAT_BIND_DEVICE_SUCCESS:
+//          L.d(TAG, "bind_device_success");
+//          bindDeviceSuccess(((GwDevResp) ((Result) (msg.obj)).getObj()).getName());
+//          break;
       }
       return false;
     }
   };
-
-  private void bindDeviceSuccess(String name) {
-    if (!mStop) {
-      mBindDeviceSuccess = true;
-      //Show Bind_Device_Find_View
-    }
-  }
-
-  private void deviceFind(String gwId) {
-    if (!mStop) {
-      //Show Device_Find_View
-    }
-  }
-
-  private void checkLoop() {
-    if (mStop) return;
-    if (mTime >= 100) {
-      stopSearch();
-      configFailure();
-    } else {
-      mTime++;
-      mHandler.sendEmptyMessageDelayed(MESSAGE_CONFIG_WIFI_OUT_OF_TIME, 1000);
-    }
-  }
-
-  private void configSuccess(DeviceBean deviceBean) {
-    Log.e("ActiveSuccess", deviceBean.getName());
-    if (deviceBean != null){
-      deviceResult.success(deviceBean.getName() + "," + deviceBean.getDevId());
-    }
-    stopSearch();
-    mHandler.sendEmptyMessageDelayed(MESSAGE_SHOW_SUCCESS_PAGE, 1000);
-  }
-  public void configFailure() {
-    if (mModelEnum == null) return;
-    if (mModelEnum == TY_AP) {
-      //ap mode
-      resultError(WHAT_AP_ACTIVE_ERROR, "TIME_ERROR", "OutOfTime");
-    } else {
-      //ez mode
-      resultError(WHAT_EC_ACTIVE_ERROR, "TIME_ERROR", "OutOfTime");
-    }
-  }
-  //暂停配网
-  private void stopSearch() {
-    mStop = true;
-    mHandler.removeMessages(MESSAGE_CONFIG_WIFI_OUT_OF_TIME);
-    cancel();
-  }
-
-  public void cancel() {
-    if (mTuyaActivator != null) {
-      mTuyaActivator.stop();
-    }
-  }
   String currentSSID = "Not Discovery";
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -216,6 +148,8 @@ public class MainActivity extends FlutterActivity{
     });
 
     TuyaHomeSdk.setDebugMode(true);
+
+
 
     new MethodChannel(getFlutterView(), CHANNEL).setMethodCallHandler(
       new MethodChannel.MethodCallHandler() {
@@ -295,7 +229,6 @@ public class MainActivity extends FlutterActivity{
 
           if (checkSinglePermission(Manifest.permission.ACCESS_FINE_LOCATION)){
             currentSSID = WiFiUtil.getCurrentSSID(mContext);
-            strWifiID = currentSSID;
             result.success("Wifi at Present: " + currentSSID);
           } else {
             wifiResult = result;
@@ -308,9 +241,8 @@ public class MainActivity extends FlutterActivity{
       @Override
       public void onMethodCall(MethodCall methodCall, MethodChannel.Result result) {
         if (methodCall.method.equals("getDevice")){
-          strWifiPass = methodCall.argument("wifipass");
-          getTokenForConfigDevice();
-          deviceResult = result;
+          String strPass = methodCall.argument("wifipass");
+//          result.success("Door Sensor,lkjlj;lkasdfasdf");
         }
       }
     });
@@ -362,105 +294,40 @@ public class MainActivity extends FlutterActivity{
   }
 
   private void getTokenForConfigDevice() {
-    if (null == currentHomeBean) {
-      return;
-    }
-    long homeId = currentHomeBean.getHomeId();
-    TuyaHomeSdk.getActivatorInstance().getActivatorToken(homeId, new ITuyaActivatorGetToken() {
-      @Override
-      public void onSuccess(String token) {
-        initConfigDevice(token);
-      }
-
-      @Override
-      public void onFailure(String s, String s1) {
-      }
-    });
+//    long homeId = FamilyManager.getInstance().getCurrentHomeId();
+//    TuyaHomeSdk.getActivatorInstance().getActivatorToken(homeId, new ITuyaActivatorGetToken() {
+//      @Override
+//      public void onSuccess(String token) {
+//        ProgressUtil.hideLoading();
+//        initConfigDevice(token);
+//      }
+//
+//      @Override
+//      public void onFailure(String s, String s1) {
+//        ProgressUtil.hideLoading();
+//        if (mConfigMode == ECActivity.EC_MODE) {
+//          mView.showNetWorkFailurePage();
+//        }
+//      }
+//    });
   }
 
   private void initConfigDevice(String token) {
-    mModelEnum = TY_EZ;
-    mTuyaActivator = TuyaHomeSdk.getActivatorInstance().newMultiActivator(new ActivatorBuilder()
-            .setSsid(strWifiID)
-            .setContext(mContext)
-            .setPassword(strWifiPass)
-            .setActivatorModel(TY_EZ)
-            .setTimeOut(100)
-            .setToken(token).setListener(new ITuyaSmartActivatorListener() {
-              @Override
-              public void onError(String s, String s1) {
-                switch (s) {
-                  case "1004":
-                    resultError(WHAT_EC_GET_TOKEN_ERROR, "wifiError", s1);
-                    return;
-                }
-                resultError(WHAT_EC_ACTIVE_ERROR, s, s1);
-              }
-
-              @Override
-              public void onActiveSuccess(DeviceBean gwDevResp) {
-
-                resultSuccess(WHAT_EC_ACTIVE_SUCCESS, gwDevResp);
-              }
-
-              @Override
-              public void onStep(String s, Object o) {
-                switch (s) {
-                  case ActivatorEZStepCode.DEVICE_BIND_SUCCESS:
-                    resultSuccess(WHAT_BIND_DEVICE_SUCCESS, o);
-                    break;
-                  case ActivatorEZStepCode.DEVICE_FIND:
-                    resultSuccess(WHAT_DEVICE_FIND, o);
-                    break;
-                }
-              }
-            }));
-    startSearch();
-
-  }
-
-  protected void resultSuccess(int what, Object obj) {
-    if (this.mHandler != null) {
-      Message message = this.mHandler.obtainMessage(what);
-      message.obj = new Result(obj);
-      this.mHandler.sendMessage(message);
-    }
-
-  }
-
-  protected void resultError(int what, String errorCode, String error) {
-    if (this.mHandler != null) {
-      Message message = this.mHandler.obtainMessage(what);
-      message.obj = new Result(errorCode, error);
-      this.mHandler.sendMessage(message);
-    }
-
-  }
-
-  public void startSearch() {
-    start();
-    mBindDeviceSuccess = false;
-    startLoop();
-  }
-
-  private void startLoop() {
-    mTime = 0;
-    mStop = false;
-    mHandler.sendEmptyMessage(MESSAGE_CONFIG_WIFI_OUT_OF_TIME);
-
-  }
-
-  public void start() {
-    if (mTuyaActivator != null) {
-      mTuyaActivator.start();
-    }
+//    if (mConfigMode == ECActivity.EC_MODE) {
+//      mModel.setEC(mSSId, mPassWord, token);
+//      startSearch();
+//    } else if(mConfigMode == ECActivity.AP_MODE){
+//      mModel.setAP(mSSId, mPassWord, token);
+//    }
   }
 
   public void checkFamilyCount() {
     getHomeList(new ITuyaGetHomeListCallback() {
       @Override
       public void onSuccess(List<HomeBean> list) {
-
+//        if (null == mHomeView) {
+//          return;
+//        }
         if (list == null || list.isEmpty()) {
           Log.e(CHANNEL, "List is Empty or Null");
           List<String> checkRoomList = new ArrayList<>();
@@ -560,7 +427,6 @@ public class MainActivity extends FlutterActivity{
     if (requestCode == CODE_FOR_LOCATION_PERMISSION) {
       if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
         currentSSID = WiFiUtil.getCurrentSSID(this);
-        strWifiID = currentSSID;
         wifiResult.success("Wifi at Present: " + currentSSID);
       } else {
         wifiResult.error("UNAVAILABLE", "Please connect with Wifi", null);
