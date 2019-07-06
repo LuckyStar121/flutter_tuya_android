@@ -65,7 +65,7 @@ class _DevicePageState extends State<DevicePage> {
       _strSSID = strResult;
     });
   }
-
+//
   Future<void> _searchDevice() async {
     String strResult;
     if (myWifiPassController.text.isEmpty){
