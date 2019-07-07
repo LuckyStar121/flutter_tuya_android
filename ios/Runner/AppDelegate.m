@@ -192,7 +192,7 @@
 }
 
 - (void) initConfigDevice {
-//    [self startConfigWifi:<#(NSString *)#> password:<#(NSString *)#> token:<#(NSString *)#>]
+
 }
 
 - (void) startConfigWifi:(NSString *)ssid password:(NSString *)password token: (NSString *)token{
