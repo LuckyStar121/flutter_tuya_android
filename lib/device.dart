@@ -84,13 +84,8 @@ class _DevicePageState extends State<DevicePage> {
       strResult = await searchDevice.invokeMethod('getDevice', {'wifipass': myWifiPassController.text});
       List<String> device = strResult.split(",");
       setState(() {
-        if (device == null || device.isEmpty){
-          _strDeviceName = "";
-          _strDeviceID = "";
-        } else {
-          _strDeviceName = device[0];
-          _strDeviceID = device[1];
-        }
+        _strDeviceName = device[0];
+        _strDeviceID = device[1];
       });
     } on PlatformException catch (e) {
       strResult = e.message;

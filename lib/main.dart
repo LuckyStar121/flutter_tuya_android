@@ -238,50 +238,6 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
     );
-//    Widget SearchWifiDevice = Container(
-//      color: Colors.green.shade200,
-//      padding: EdgeInsets.only(top:5, bottom: 5),
-//      child: Row(
-//        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//        children: [
-//          Container(
-//            child: RaisedButton(
-//              child: const Text('Search Device'),
-//              color: Theme.of(context).accentColor,
-//              elevation: 4.0,
-//              splashColor: Colors.blueGrey,
-//              onPressed: () {
-//                return showDialog(
-//                  context: context,
-//                  builder: (context) {
-//                    return AlertDialog(
-//                      // Retrieve the text the that user has entered by using the
-//                      // TextEditingController.
-//                      content: Text('Searching...'),
-//                    );
-//                  },
-//                );
-//                // Perform some action
-//              },
-//            ),
-//          ),
-//        ],
-//      ),
-//    );
-//    Widget DeviceList = Container(
-//
-//    );
-//    Widget MainForm = Container(
-//
-//      child: Column(
-//        crossAxisAlignment: CrossAxisAlignment.start,
-//        children: [
-//          AddRoom,
-//          SearchWifiDevice,
-////          AddWifiDevice,
-//        ],
-//      ),
-//    );
     return Scaffold(
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
