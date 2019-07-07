@@ -2,7 +2,7 @@
 #import <UIKit/UIKit.h>
 #import <TuyaSmartHomeKit/TuyaSmartKit.h>
 
-@interface AppDelegate : FlutterAppDelegate {
+@interface AppDelegate : FlutterAppDelegate <TuyaSmartActivatorDelegate>{
     long currentHomeID;
 }
 
