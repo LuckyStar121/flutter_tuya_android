@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "GeneratedPluginRegistrant.h"
-
+#include <SystemConfiguration/SystemConfiguration.h>
+@import SystemConfiguration.CaptiveNetwork;
 	
 @implementation AppDelegate
 
@@ -81,68 +82,29 @@
                                              binaryMessenger: controller];
     [wifiChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
         if ([@"getSSID" isEqualToString:call.method]) {
-            /**
-             if ([CLLocationManager locationServicesEnabled]){
-             
-             NSLog(@"Location Services Enabled");
-             
-             if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusDenied){
-             alert = [[UIAlertView alloc] initWithTitle:@"App Permission Denied"
-             message:@"To re-enable, please go to Settings and turn on Location Service for this app."
-             delegate:nil
-             cancelButtonTitle:@"OK"
-             otherButtonTitles:nil];
-             [alert show];
-             }
-             }
-             */
-            if ([CLLocationManager locationServicesEnabled]){
-                CLAuthorizationStatus status = [CLLocationManager authorizationStatus];
-                switch (status) {
-                    case kCLAuthorizationStatusNotDetermined:
-                        
-                        //The user hasn't yet chosen whether your app can use location services or not.
-                        break;
-                        
-                    case kCLAuthorizationStatusAuthorizedAlways:
-                        
-                        //The user has let your app use location services all the time, even if the app is in the background.
-                        break;
-                        
-                    case kCLAuthorizationStatusAuthorizedWhenInUse:
-                        
-                        //The user has let your app use location services only when the app is in the foreground.
-                        break;
-                        
-                    case kCLAuthorizationStatusRestricted:
-                        
-                        //The user can't choose whether or not your app can use location services or not, this could be due to parental controls for example.
-                        break;
-                        
-                    case kCLAuthorizationStatusDenied:
-                        
-                        //The user has chosen to not let your app use location services.
-                        break;
-                        
-                    default:
-                        break;
-                }
-            } else {
-                CLLocationManager *locationManager = [[CLLocationManager alloc] init];
-                [locationManager requestAlwaysAuthorization];
-//                result(@"ok");
-//                self.wifiResult = result;
+            self.wifiSSID = [TuyaSmartActivator currentWifiSSID];
+//            _wifiSSID = [self getSSID];
+            if (self.wifiSSID != nil){
+                result([NSMutableString stringWithFormat:@"Wifi At Present:%@", self.wifiSSID]);
+            } else{
+                result([FlutterError errorWithCode:@"UNAVAILABLE"
+                                           message:@"Wifi Connection Failed"
+                                           details:nil]);
+                self.wifiSSID = nil;
             }
         }
     }];
+    
     FlutterMethodChannel* deviceChannel = [FlutterMethodChannel
                                          methodChannelWithName:@"flutter.wifi/searchdevice"
                                          binaryMessenger: controller];
     [deviceChannel setMethodCallHandler:^(FlutterMethodCall* call, FlutterResult result) {
         if ([@"getDevice" isEqualToString:call.method]) {
-            self.wifiPass = call.arguments[@"wifipass"];
-            
-            self.deviceResult = result;
+            if (self.wifiSSID != nil){
+                self.wifiPass = call.arguments[@"wifipass"];
+                [self getTokenForConfigDevice];
+                self.deviceResult = result;
+            }
         }
     }];
   [GeneratedPluginRegistrant registerWithRegistry:self];
@@ -201,4 +163,74 @@
                                    details:nil]);
     }];
 }
+
+- (NSString *) getSSID {
+    NSString* wifiName = nil;
+    NSArray *ifs = (__bridge_transfer id)CNCopySupportedInterfaces();
+    for (NSString *ifnam in ifs){
+        NSDictionary *info = (__bridge_transfer id)CNCopyCurrentNetworkInfo((__bridge CFStringRef)ifnam);
+        if (info[@"SSID"]){
+            wifiName = info[@"SSID"];
+        }
+    }
+    return wifiName;
+}
+
+- (void) getTokenForConfigDevice {
+    if (currentHomeID == 0)
+        return;
+    
+    [[TuyaSmartActivator sharedInstance] getTokenWithHomeId:currentHomeID success:^(NSString *token) {
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:1/60.0 target:self selector:@selector(timerCallback) userInfo:nil repeats:YES];
+        self.fireDate = [NSDate date];
+        [self startConfigWifi:self.wifiSSID password:self.wifiPass token:token];
+    } failure:^(NSError *error) {
+        self.deviceResult([FlutterError errorWithCode:@"UNAVAILABLE"
+                                              message:@"try to search Device"
+                                              details:nil]);
+    }];
+}
+
+- (void) initConfigDevice {
+//    [self startConfigWifi:<#(NSString *)#> password:<#(NSString *)#> token:<#(NSString *)#>]
+}
+
+- (void) startConfigWifi:(NSString *)ssid password:(NSString *)password token: (NSString *)token{
+    // Set TuyaSmartActivator delegate, impl delegate method
+    [TuyaSmartActivator sharedInstance].delegate = self;
+    
+    // start activator
+    [[TuyaSmartActivator sharedInstance] startConfigWiFi:TYActivatorModeEZ ssid:ssid password:password token:token timeout:100];
+}
+
+- (void) stopConfigWifi {
+    [TuyaSmartActivator sharedInstance].delegate = self;
+    [[TuyaSmartActivator sharedInstance] stopConfigWiFi];
+}
+
+- (void) timerCallBack {
+//    CGFloat progress = MIN(fabs([self.fireDate timeInterValSinceNow] / Timeout), 1.0);
+    CGFloat progress = MIN([self.fireDate timeIntervalSinceNow] / 100, 1.0);
+    if (progress >= 1)
+        [_timer invalidate];
+}
+
+#pragma mark - TuyaSmartActivator Delegate
+
+- (void)activator:(TuyaSmartActivator *)activator didReceiveDevice:(TuyaSmartDeviceModel *)deviceModel error:(NSError *)error {
+    if (!error && deviceModel){
+        [_timer invalidate];
+        [TuyaSmartActivator sharedInstance].delegate = nil;
+        [self stopConfigWifi];
+        self.deviceResult([deviceModel name]);
+    }
+    
+    if (error){
+        [_timer invalidate];
+        self.deviceResult([FlutterError errorWithCode:@"UNAVAILABLE"
+                                             message:@"Searching Device Failed"
+                                             details:nil]);
+    }
+}
+
 @end

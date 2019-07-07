@@ -12,8 +12,19 @@
 @property (nonatomic, strong) TuyaSmartHomeManager* homeManager;
 @property (nonatomic, strong) TuyaSmartHomeModel* currentHome;
 @property (nonatomic, strong) NSString* wifiPass;
+@property (nonatomic, strong) NSString* wifiSSID;
+@property (nonatomic, strong) NSTimer *timer;
+@property (nonatomic, strong) NSDate *fireDate;
 
 - (void) checkFamilyCount;
 - (void) setCurrentHome:(TuyaSmartHomeModel *)home;
 - (void) addFamily:(NSString *) homeName RoomList:(NSArray *) roomlist;
+- (NSString *) getSSID;
+- (void) getTokenForConfigDevice;
+- (void) initConfigDevice;
+
+- (void) startConfigWifi:(NSString *)ssid password:(NSString *)password token: (NSString *)token;
+- (void) stopConfigWifi;
+- (void) timerCallback;
+
 @end
